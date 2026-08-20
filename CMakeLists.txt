@@ -15,3 +15,4 @@ endif()
 include(CTest)
 
 add_subdirectory(lessons/01-kernel)
+add_subdirectory(lessons/02-process-and-syscall)
