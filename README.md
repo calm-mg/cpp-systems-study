@@ -42,6 +42,30 @@ C++ 사용자 프로그램
 
 기본 요구사항은 CMake 3.20 이상과 C++20 컴파일러입니다.
 
+### Windows에서 WSL2로 실행하기
+
+관리자 권한 PowerShell에서 Ubuntu 기반 WSL2를 설치합니다.
+
+```powershell
+wsl --install -d Ubuntu
+```
+
+Windows 재시작과 Ubuntu 초기 설정을 마친 뒤, WSL terminal에서 필요한 도구와
+저장소를 준비합니다. 다음 명령은 Ubuntu를 기준으로 한 예시입니다.
+
+```bash
+sudo apt update
+sudo apt install -y build-essential cmake git
+git clone https://github.com/calm-mg/cpp-systems-study.git
+cd cpp-systems-study
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+cmake --build build
+ctest --test-dir build --output-on-failure
+```
+
+`fork()`, `exec()`, Unix domain socket 같은 POSIX 실습은 WSL2 안에서 실행합니다.
+Windows 네이티브 Visual Studio 빌드는 현재 공통 강의의 지원 대상이 아닙니다.
+
 ## 커리큘럼
 
 1. 커널, 권한 모드, 시스템 호출 경계
